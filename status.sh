@@ -5,7 +5,7 @@ PREVIOUS_STATUS="UNKNOWN" # tracks the previous status to prevent sending multip
 ROLE_ID="1354567269652627628" # role for pinging members
 
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ") # message for webhook if the site is up
-JSON_PAYLOAD=$(jq -n --arg title "The website is online!" \
+JSON_PAYLOAD=$(jq -n --arg title "Solo Central is online!" \
                      --arg description "<@&$ROLE_ID> The website is online!" \
                      --arg color "65280" \
                      --arg timestamp "$TIMESTAMP" \
@@ -26,7 +26,7 @@ JSON_PAYLOAD=$(jq -n --arg title "The website is online!" \
 curl -H "Content-Type: application/json" -X POST -d "$JSON_PAYLOAD" "$DISCORD_WEBHOOK_URL" # sends a "site is up" message on start
 
 while true; do
-    RESPONSE=$(curl -s "https://www.operate.lol/api/check?site=https://wwwspedcentral.fun") # put your website in the "site=" area, make sure to include https or http
+    RESPONSE=$(curl -s "https://www.operate.lol/api/check?site=https://www.spedcentral.fun") # put your website in the "site=" area, make sure to include https or http
     STATUS=$(echo "$RESPONSE" | jq -r '.status')
 
     TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
@@ -35,7 +35,7 @@ while true; do
         JSON_PAYLOAD=$(jq -n \
             --arg content "<@&$ROLE_ID>" \
             --arg title "Website is down! :(" \
-            --arg description "The website is down! Trying to bring online..." \
+            --arg description "Solo Central is down! Trying to bring online..." \
             --arg color "16711680" \
             --arg timestamp "$TIMESTAMP" \
             --arg footer " if u see this, hello" \
@@ -62,7 +62,7 @@ while true; do
         fi
 
     elif [[ "$STATUS" == "UP" && "$PREVIOUS_STATUS" == "DOWN" ]]; then # message for webhook if the site is up
-        JSON_PAYLOAD=$(jq -n --arg title "The website is online!" \
+        JSON_PAYLOAD=$(jq -n --arg title "Solo Central is online!" \
                              --arg description "<@&$ROLE_ID> The website is online!" \
                              --arg color "65280" \
                              --arg timestamp "$TIMESTAMP" \
