@@ -26,7 +26,7 @@ JSON_PAYLOAD=$(jq -n --arg title "The website is online!" \
 curl -H "Content-Type: application/json" -X POST -d "$JSON_PAYLOAD" "$DISCORD_WEBHOOK_URL" # sends a "site is up" message on start
 
 while true; do
-    RESPONSE=$(curl -s "https://www.operate.lol/api/check?site=https://spedcentral.fun") # put your website in the "site=" area, make sure to include https or http
+    RESPONSE=$(curl -s "https://www.operate.lol/api/check?site=https://wwwspedcentral.fun") # put your website in the "site=" area, make sure to include https or http
     STATUS=$(echo "$RESPONSE" | jq -r '.status')
 
     TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
